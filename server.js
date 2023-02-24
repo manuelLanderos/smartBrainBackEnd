@@ -8,7 +8,7 @@ const register = require('./controllers/register')
 const signIn = require('./controllers/signIn')
 const profile = require('./controllers/profile')
 const image = require('./controllers/image')
-const app = require('../server');
+// const app = require('../server');
 // const db = knex({
 //   client: 'pg',
 //   connection: {
@@ -39,7 +39,6 @@ app.use(cors())
 
 
 
-
 app.get('/', (req, res) => { res.send(database.users) })
 app.post('/signin', (req, res) => { signIn.handleSignIn(req, res, db, bcrypt) })
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
@@ -51,4 +50,5 @@ app.listen(3000, () => {
 
 })
 
+module.exports = app;
 

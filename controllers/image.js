@@ -1,14 +1,17 @@
 
 // this is new 
 const Clarifai = require("clarifai")
+const app = new Clarifai.App({
+  apiKey: '2b3cddc9a4134b3dafa87ca2056f55f6'
+});
 
 const handleApiCall = (req, res) => {
-  const { input } = req.body;
-  if (!input) {
-    return res.status(400).json('invalid request');
-  }
+  // const { input } = req.body;
+  // if (!input) {
+  //   return res.status(400).json('invalid request');
+  // }
   app.models
-    .predict(Clarifai.FACE_DETECT_MODEL, input)
+    .predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
     .then(data => {
       res.json(data);
     })
