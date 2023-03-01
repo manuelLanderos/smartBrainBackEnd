@@ -1,5 +1,6 @@
 
-// this is new 
+// this is the newest version
+
 const Clarifai = require("clarifai")
 const app = new Clarifai.App({
   apiKey: '2b3cddc9a4134b3dafa87ca2056f55f6',
