@@ -25,7 +25,7 @@ const image = require('./controllers/image')
 const db = knex({
   client: 'pg',
   connection: {
-    host: 'dpg-cjnr70gcfp5c739u2950-a',
+    host: 'dpg-cjnr70gcfp5c739u2950-a.oregon-postgres.render.com',
     user: 'smart_brain_database_2rvx_user',
     password: '0c2IoeEpHlKQF2Vr1iVAUIjzs7aamhr1',
     database: 'smart_brain_database_2rvx'
