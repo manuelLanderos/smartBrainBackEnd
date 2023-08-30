@@ -25,10 +25,10 @@ const image = require('./controllers/image')
 const db = knex({
   client: 'pg',
   connection: {
-    host: 'dpg-chr7hl0rddlba9tles80-a',
-    user: 'smart_brain_database_69se_user',
-    password: 'XCT48k3rHwYpvkQPG8177W08NWcFQxgA',
-    database: 'smart_brain_database_69se'
+    host: 'dpg-cjnoo6vjbvhs73fvqthg-a',
+    user: 'smart_brain_hqp0_user',
+    password: 'Rx21sgUCiDy3VIXu5G16mDKpyvbSNCD2',
+    database: 'smart_brain_hqp0'
   }
 });
 
