@@ -40,12 +40,12 @@ const handleRegister = (req, res, db, bcrypt) => {
       .catch(err => {
         console.log('Transaction error:', err);
         trx.rollback();
-        res.status(400).json('unable to register');
+        res.status(400).json('er1');
       });
   })
     .catch(err => {
       console.log('Database connection error:', err);
-      res.status(400).json('unable to register');
+      res.status(400).json('er2');
     });
 };
 
