@@ -45,7 +45,7 @@ const handleRegister = (req, res, db, bcrypt) => {
   })
     .catch(err => {
       console.log('Database connection error:', err);
-      res.status(400).json('er2');
+      res.status(400).json('Database connection error: ' + err.message);
     });
 };
 
