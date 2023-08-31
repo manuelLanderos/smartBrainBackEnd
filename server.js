@@ -22,15 +22,22 @@ const image = require('./controllers/image')
 //   }
 // });
 
-const db = knex({
-  client: 'pg',
-  connection: {
-    host: 'dpg-cjnrkjcdfrcc739lq5j0-a',
-    user: 'smart_brain_database_ymly_user',
-    password: 'fZyBs6dD3MTwwRJ0rZy2oAU0XggBIdXZ',
-    database: 'smart_brain_database_ymly'
-  }
-});
+let db;
+
+try {
+  db = knex({
+    client: 'pg',
+    connection: {
+      host: 'dpg-cjnrkjcdfrcc739lq5j0-a',
+      user: 'smart_brain_database_ymly_user',
+      password: 'fZyBs6dD3MTwwRJ0rZy2oAU0XggBIdXZ',
+      database: 'smart_brain_database_ymly'
+    }
+  });
+} catch (error) {
+  console.error('Database connection error:', error);
+  // Handle the error gracefully, e.g., by shutting down the server or logging the error.
+}
 
 // db.select('*').from('users').then(data => {
 //   console.log(data)
