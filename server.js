@@ -28,10 +28,10 @@ try {
   db = knex({
     client: 'pg',
     connection: {
-      host: 'dpg-cjnrkjcdfrcc739lq5j0-a',
-      user: 'smart_brain_database_ymly_user',
-      password: 'fZyBs6dD3MTwwRJ0rZy2oAU0XggBIdXZ',
-      database: 'smart_brain_database_ymly'
+      host: 'dpg-cjp2d9j6fquc73arkivg-a',
+      user: 'smart_brain_database_1lwx_user',
+      password: 'IloORzIGDPFDHhdJS3G22rP0XdxrnIhq',
+      database: 'smart_brain_database_1lwx'
     }
   });
 } catch (error) {
