@@ -35,7 +35,7 @@ try {
     }
   });
 } catch (error) {
-  console.error('Database connection error:', error);
+  console.error('something is wrong:', error);
   // Handle the error gracefully, e.g., by shutting down the server or logging the error.
 }
 
