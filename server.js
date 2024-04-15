@@ -24,6 +24,9 @@ const db = knex({
 app.use(bodyParser.json());
 app.use(cors());
 
+// Handle preflight requests
+app.options('*', cors());
+
 // Routes
 app.get('/', (req, res) => { res.send(db.users) });
 app.post('/signin', (req, res) => { signIn.handleSignIn(req, res, db, bcrypt); });
