@@ -1,19 +1,18 @@
-const Clarifai = require("clarifai");
 const app = new Clarifai.App({
-  apiKey: 'f4253a34115d453c8eadb027bd51edbe', // Replace with your actual API key
+  apiKey: 'your_api_key_here', // Replace with your API Key
 });
 
 const handleApiCall = (req, res) => {
   app.models
     .predict(
       {
-        id: 'face-detection-workflow-fxb73u', // Your Clarifai model ID
-        version: '7e1be10d41364aa7a9406a8a21a54699',     // Replace with the correct version ID if needed
+        id: 'face-detection-workflow-fxb73u', // Your Model ID
+        version: '3520030d353e4c89b5ddc723d797f432', // Your Model Version
       },
       req.body.input
     )
     .then((response) => {
-      res.json(response); // Sending the face detection response back
+      res.json(response); // Send the face detection response
     })
     .catch((err) => res.status(400).json('unable to work with api')); // Error handling
 };
