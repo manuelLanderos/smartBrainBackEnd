@@ -1,42 +1,34 @@
 const Clarifai = require("clarifai");
-
 const app = new Clarifai.App({
-  apiKey: 'f4253a34115d453c8eadb027bd51edbe', // Your API key here
+  apiKey: 'f4253a34115d453c8eadb027bd51edbe', // Replace with your actual API key
 });
 
 const handleApiCall = (req, res) => {
-  const { input } = req.body; // Get the input from the request body (image URL)
-
-  if (!input) {
-    return res.status(400).json('Invalid request. Image URL is missing');
-  }
-
   app.models
-    .predict(Clarifai.FACE_DETECT_MODEL, input) // Use the face detection model
+    .predict(
+      {
+        id: 'face-detection-workflow-fxb73u', // Your Clarifai model ID
+        version: '7e1be10d41364aa7a9406a8a21a54699',     // Replace with the correct version ID if needed
+      },
+      req.body.input
+    )
     .then((response) => {
-      res.json(response); // Send the response with the bounding boxes for faces
+      res.json(response); // Sending the face detection response back
     })
-    .catch((err) => {
-      console.error('Error with Clarifai API:', err);
-      res.status(400).json('Unable to work with API');
-    });
+    .catch((err) => res.status(400).json('unable to work with api')); // Error handling
 };
 
 const handleImage = (req, res, db) => {
-  const { id } = req.body; // Get the user ID from the request body
+  const { id } = req.body;
 
-  // Increment the entries count for the user
   db('users')
     .where('id', '=', id)
     .increment('entries', 1)
     .returning('entries')
     .then((entries) => {
-      res.json(entries[0].entries); // Return the updated entries count
+      res.json(entries[0].entries);
     })
-    .catch((err) => {
-      console.error('Error incrementing entries:', err);
-      res.status(400).json('Unable to get count for entries');
-    });
+    .catch((err) => res.status(400).json('unable to get count for entries')); // Error handling
 };
 
 module.exports = {
