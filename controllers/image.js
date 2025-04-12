@@ -1,44 +1,43 @@
+const Clarifai = require("clarifai");
 
-// this is the newest version
-
-const Clarifai = require("clarifai")
 const app = new Clarifai.App({
-  apiKey: '2b3cddc9a4134b3dafa87ca2056f55f6',
+  apiKey: 'f4253a34115d453c8eadb027bd51edbe', // Your API key here
 });
 
 const handleApiCall = (req, res) => {
-  // const { input } = req.body;
-  // if (!input) {
-  //   return res.status(400).json('invalid request');
-  // }
+  const { input } = req.body; // Get the input from the request body (image URL)
+
+  if (!input) {
+    return res.status(400).json('Invalid request. Image URL is missing');
+  }
+
   app.models
-    //   .predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
-    //   .then(data => {
-    //     res.json(data);
-    .predict(
-      {
-        id: 'a403429f2ddf4b49b307e318f00e528b',
-        version: '34ce21a40cc24b6b96ffee54aabff139',
-      },
-      req.body.input
-    )
+    .predict(Clarifai.FACE_DETECT_MODEL, input) // Use the face detection model
     .then((response) => {
-      res.json(response);
+      res.json(response); // Send the response with the bounding boxes for faces
     })
-    .catch((err) => res.status(400).json('unable to work with api'));
+    .catch((err) => {
+      console.error('Error with Clarifai API:', err);
+      res.status(400).json('Unable to work with API');
+    });
 };
 
 const handleImage = (req, res, db) => {
-  const { id } = req.body;
+  const { id } = req.body; // Get the user ID from the request body
 
-  db('users').where('id', '=', id)
-    .increment('entries', 1,)
+  // Increment the entries count for the user
+  db('users')
+    .where('id', '=', id)
+    .increment('entries', 1)
     .returning('entries')
     .then((entries) => {
-      res.json(entries[0].entries)
+      res.json(entries[0].entries); // Return the updated entries count
     })
-    .catch((err) => res.status(400).json('unable to get count for entries'))
-}
+    .catch((err) => {
+      console.error('Error incrementing entries:', err);
+      res.status(400).json('Unable to get count for entries');
+    });
+};
 
 module.exports = {
   handleImage,
